@@ -37,15 +37,21 @@ class Solution:
 
         count = 0
 
-        for row in range(len(bank)-1):
-            if '1' in bank[row]:
-                temp = row+1
-                while('1' not in bank[temp] and temp < len(bank)-1):
+        freqArray = []
+
+        for row in range(len(bank)):
+            freqArray.append(bank[row].count('1'))
+
+        for i in range(len(bank)-1):
+            if freqArray[i] > 0:
+                temp = i+1
+                while(freqArray[temp] <= 0 and temp < len(bank)-1):
                     temp+=1
-                onesCountInNextRow = bank[temp].count('1')   
-                count += bank[row].count('1') * onesCountInNextRow
+                count += freqArray[i]* freqArray[temp]
+
 
         return count
 
                 
+        
         
